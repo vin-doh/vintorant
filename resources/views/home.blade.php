@@ -185,7 +185,7 @@
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>{{ $launchFood->name }}</span>
-                                            <span class="text-primary">`${{ $launchFood->price }}</span>
+                                            <span class="text-primary">${{ $launchFood->price }}</span>
                                         </h5>
                                         <small class="fst-italic">{{ substr($launchFood->description, 0, 20) }}</small>
                                     </div>
