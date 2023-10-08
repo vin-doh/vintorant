@@ -41,7 +41,7 @@
                         </tr>  
                     @endforeach
                 @else
-                <h3 class="alert alert-success">you have no items in cart yet</p>
+                <h3 class="alert alert-success">You have no items in cart yet.</p>
                 @endif
                     
                 
@@ -53,9 +53,12 @@
           <div class="position-relative mx-auto" style="max-width: 400px; padding-left: 679px;">
             <p style="margin-left: -7px;" class="w-19 py-3 ps-4 pe-5" type="text"> Total: ${{ $price }}</p>
             @if($price == 0)
-            <p class="alert alert-success"> You cannot checkout when you have no items in the cart</p>
+            <p style="width: 241px;" class="alert alert-success"> You cannot checkout when you have no items in the cart.</p>
             @else
-            <button type="button" class="btn btn-primary py-2 top-0 end-0 mt-2 me-2">Checkout</button>
+            <form method="POST" action="{{ route('prepare.checkout') }}">
+                @csrf
+                <input type="text" value="{{ $price }}" name="price">
+            <button type="submit" name="submit" class="btn btn-primary py-2 top-0 end-0 mt-2 me-2">Checkout</button>
             @endif
         </div>
     </div>

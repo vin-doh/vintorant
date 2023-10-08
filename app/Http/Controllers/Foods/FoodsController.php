@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Food\Food;
 use App\Models\Food\Cart;
 use Auth;
+use Session;
+
 class FoodsController extends Controller
 {
     //
@@ -72,6 +74,25 @@ class FoodsController extends Controller
         if ($deleteItem) {
             return redirect()->route('food.display.cart')->with([ 'delete' => 'Item deleted from cart succesffuly.' ]);
         }        
+
+    }
+    public function prepareCheckout(Request $request){
+
+        $value = $request->price;
+        $price = Session::put('price', $value);
+
+        $newPrice = Session::get('price');
+
+        if ($newPrice > 0) {
+        return redirect()->route('foods.checkout', compact('price'));
+        }
+        
+
+    }
+    public function checkout(){
+
+    return view('foods.checkout');
+        
 
     }
     

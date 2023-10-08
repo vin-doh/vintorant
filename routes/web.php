@@ -27,3 +27,6 @@ Route::get('foods/food-details/{id}', [App\Http\Controllers\Foods\FoodsControlle
 Route::post('foods/food-details/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'cart'])->name('food.cart');
 Route::get('foods/cart', [App\Http\Controllers\Foods\FoodsController::class, 'displaycartItems'])->name('food.display.cart');
 Route::get('foods/delete-cart/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'deletecartItems'])->name('food.delete.cart');
+Route::post('foods/prepare-checkout', [App\Http\Controllers\Foods\FoodsController::class, 'prepareCheckout'])->name('prepare.checkout');
+Route::get('foods/checkout', [App\Http\Controllers\Foods\FoodsController::class, 'checkout'])->name('foods.checkout');
+
