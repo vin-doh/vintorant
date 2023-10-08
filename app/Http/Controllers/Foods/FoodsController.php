@@ -9,8 +9,10 @@ class FoodsController extends Controller
 {
     //
 
-    // public function index(){
+    public function foodDetails($id){
+        $foodItem = Food::find($id);
+        return view('foods.food-details', compact('foodItem'));
         
 
-    // }
+    }
 }
