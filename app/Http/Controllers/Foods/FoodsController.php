@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Food\Food;
 use App\Models\Food\Cart;
+use Auth;
 class FoodsController extends Controller
 {
     //
 
     public function foodDetails($id){
         $foodItem = Food::find($id);
-        return view('foods.food-details', compact('foodItem'));
+
+        //verifying if user added item to cart
+        $cartVerifying = Cart::where('food_id', $id)->where('user_id', Auth::user()->id)->count();
+        return view('foods.food-details', compact('foodItem', 'cartVerifying'));
         
 
     }
@@ -27,7 +31,9 @@ class FoodsController extends Controller
             "price" => $request->price,
         ]);
 
-        echo "item added to cart succesfully";
+        if ($cart) {
+            return redirect()->route('food.details', $id)->with([ 'success' => 'Item added to cart succesffuly.' ]);
+        }
         //return view('foods.food-details', compact('foodItem'));
         
 
