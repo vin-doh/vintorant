@@ -27,7 +27,9 @@ class HomeController extends Controller
     {
         $breakfastFoods = Food::select()->take(4)->where('category', 'Breakfast')->orderBy('id', 'desc')->get();
         $launchFoods = Food::select()->take(4)->where('category', 'Launch')->orderBy('id', 'desc')->get();
+        $dinnerFoods = Food::select()->take(4)->where('category', 'Dinner')->orderBy('id', 'desc')->get();
 
-        return view('home', compact('breakfastFoods', 'launchFoods'));
+
+        return view('home', compact('breakfastFoods', 'launchFoods', 'dinnerFoods'));
     }
 }
