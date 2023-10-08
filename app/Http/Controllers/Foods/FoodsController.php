@@ -38,6 +38,11 @@ class FoodsController extends Controller
         
 
     }
+    public function displayCartItems(){
+        $cartItems = Cart::where('user_id', Auth::user()->id)->get();
+        return view('foods.cart', compact('cartItems'));
+        
 
+    }
     
 }
