@@ -37,7 +37,15 @@
                     </div>
                    
                 </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Add to Cart</a>
+                <form method="POST" action="{{ route('food.cart', $foodItem->id) }}">
+                    @csrf
+                    <input type="text" name="user_id" value="{{  Auth::user()->id }}">
+                    <input type="text" name="food_id" value="{{  $foodItem->id }}">
+                    <input type="text" name="name" value="{{  Auth::user()->name }}">
+                    <input type="text" name="image" value="{{  Auth::user()->image }}">
+                    <input type="text" name="price" value="{{  Auth::user()->price }}">
+                    <button type="submit" name="submit" class="btn btn-primary py-3 px-5 mt-2">Add to Cart</button>
+                </form>
             </div>
         </div>
     </div>
