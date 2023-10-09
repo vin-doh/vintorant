@@ -96,6 +96,7 @@ class FoodsController extends Controller
         
 
     }
+
     public function storeCheckout(Request $request){
         $checkout = Checkout::create([
             "name" => $request->name,
@@ -109,12 +110,20 @@ class FoodsController extends Controller
             "price" => $request->price,
         ]);
 
-        echo "go to paypal";
-        // if ($checkout) {
-        //     return redirect()->route('food.details', $id)->with([ 'success' => 'Item added to cart succesffuly.' ]);
-        // }
+        //echo "go to paypal";
+        if ($checkout) {
+            return redirect()->route('foods.pay');
+        }
         //return view('foods.food-details', compact('foodItem'));
         
+    }
+
+    public function payWithPaypal(){
+
+        return view('foods.pay');
+            
 
     }
+
+    
 }
